@@ -1,4 +1,9 @@
-# letsencrypt.sh [![Build Status](https://travis-ci.org/lukas2511/letsencrypt.sh.svg?branch=master)](https://travis-ci.org/lukas2511/letsencrypt.sh)
+# dehydrated [![Build Status](https://travis-ci.org/lukas2511/dehydrated.svg?branch=master)](https://travis-ci.org/lukas2511/dehydrated)
+
+![](docs/logo.jpg)
+
+*Note: This project was renamed from letsencrypt.sh because the original name was violating Let's Encrypts trademark policy. I know that this results in quite a lot of installations failing but I didn't have a choice...  
+For now there is a wrapper script for compatibility with old config locations and symlinks, but it will be removed in a few weeks.*
 
 This is a client for signing certificates with an ACME-server (currently only provided by letsencrypt) implemented as a relatively simple bash-script.
 
@@ -28,7 +33,7 @@ If you have any problems take a look at our [Troubleshooting](docs/troubleshooti
 ## Usage:
 
 ```text
-Usage: ./letsencrypt.sh [-h] [command [argument]] [parameter [argument]] [parameter [argument]] ...
+Usage: ./dehydrated [-h] [command [argument]] [parameter [argument]] [parameter [argument]] ...
 
 Default command: help
 
@@ -41,8 +46,13 @@ Commands:
  --env (-e)                       Output configuration variables for use in other scripts
 
 Parameters:
+ --full-chain (-fc)               Print full chain when using --signcsr
+ --ipv4 (-4)                      Resolve names to IPv4 addresses only
+ --ipv6 (-6)                      Resolve names to IPv6 addresses only
  --domain (-d) domain.tld         Use specified domain name(s) instead of domains.txt entry (one certificate!)
+ --keep-going (-g)                Keep going after encountering an error while creating/renewing multiple certificates in cron mode
  --force (-x)                     Force renew of certificate even if it is longer valid than value in RENEW_DAYS
+ --no-lock (-n)                   Don't use lockfile (potentially dangerous!)
  --ocsp                           Sets option in CSR indicating OCSP stapling to be mandatory
  --privkey (-p) path/to/key.pem   Use specified private key instead of account key (useful for revocation)
  --config (-f) path/to/config     Use specified config file
